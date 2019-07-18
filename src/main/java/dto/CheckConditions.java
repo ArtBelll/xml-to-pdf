@@ -29,8 +29,9 @@ public class CheckConditions {
         }
     }
 
-    public Map<Integer, Integer> mapAnswerToQuestion() {
+    public Map<String, Condition> mapAnswerToQuestion() {
         return serviceConditions.conditions.stream()
-                .collect(Collectors.toMap(condition -> condition.questionId, condition -> condition.cnd.answerId));
+                .collect(Collectors.toMap(condition -> String.valueOf(condition.questionId),
+                        condition -> new Condition(condition.questionId, condition.cnd.answerId)));
     }
 }

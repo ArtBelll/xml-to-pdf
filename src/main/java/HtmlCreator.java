@@ -9,7 +9,7 @@ import java.util.Map;
 public class HtmlCreator {
 
     @SneakyThrows
-    public ByteArrayOutputStream createPdf(Map<Long, Long> scopes) {
+    public ByteArrayOutputStream generateHtml(Map<String, Object> scopes) {
         InputStream template = this.getClass().getResourceAsStream("template.html");
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Writer writer = new OutputStreamWriter(outputStream);

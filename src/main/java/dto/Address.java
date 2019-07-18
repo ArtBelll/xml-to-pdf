@@ -3,6 +3,8 @@ package dto;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlElement;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Getter
 public class Address {
@@ -27,4 +29,10 @@ public class Address {
 
     @XmlElement(name = "applicant-addrRegFlat")
     private String flat;
+
+    public String getFullAddress() {
+        return Stream.of(index, district, city, street, house, housing, flat)
+                .filter(s -> s != null && !s.isEmpty())
+                .collect(Collectors.joining(", "));
+    }
 }

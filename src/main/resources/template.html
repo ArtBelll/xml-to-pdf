@@ -24,8 +24,8 @@
             flex-direction: column
         }
 
-        .mr-5 {
-            margin-right: 5px;
+        .ml-5 {
+            margin-left: 5px;
         }
 
         .text-center {
@@ -62,40 +62,35 @@
 </head>
 <body>
 <div class="ml-40">
-    <div class="d-flex">В * ПЗ: Место оказания услуги
+    <div class="d-flex">
         <div class="d-flex direction-column">
-            <p class="mr-5">
-                *
-            </p>
-            <p>
+            <p>В _________________________________________________</p>
+            <p class="text-center">
                 (наименование филиала ЦСЗН)
             </p>
         </div>
     </div>
     <div class="d-flex">
-        от заявителя * ФИО заявителя
         <div class="d-flex direction-column">
-            <p class="mr-5">
-                *
-            </p>
             <p>
+                от заявителя {{applicant.fullName}}
+            </p>
+            <p class="text-center">
                 (фамилия, имя отчество заполняется заявителем)
             </p>
         </div>
     </div>
     <div>
-        Адрес места жительства заявителя *
+        Адрес места жительства заявителя {{applicant.registrationAddress.fullAddress}}
+        (почтовый индекс, район, населенный пункт, улица, дом, корпус, квартира)
     </div>
     <div>
-        * Адрес проживания * Адрес регистрации (почтовый индекс, район, населенный пункт, улица, дом, корпус, квартира)
-    </div>
-    <div>
-        * СНИЛС *
-        <p class="text-center">страховой номер индивидуального лицевого счета (СНИЛС) – заполняется при первичном
+        <p>{{applicant.snils}}</p>
+        <p class="mr-5 text-center">страховой номер индивидуального лицевого счета (СНИЛС) – заполняется при первичном
             обращении
         </p>
     </div>
-    телефон * Телефон *
+    телефон {{applicant.phone}}
 </div>
 <p class="text-center mt-40">
     З А Я В Л Е Н И Е
@@ -104,52 +99,51 @@
 </p>
 <div class="mx-30">
     Прошу выдать (поставить отметку «V»)
+    {{#conditions.4585}}
     <table>
         <tr>
-            <td class="v">*</td>
+            <td class="v">{{#isAnswer}}9842{{/isAnswer}}</td>
             <td>удостоверение многодетной семьи (далее – удостоверение)</td>
         </tr>
         <tr>
-            <td class="v">*</td>
+            <td class="v">{{#isAnswer}}9843{{/isAnswer}}</td>
             <td>продления срока действия удостоверения</td>
         </tr>
         <tr>
-            <td class="v">*</td>
+            <td class="v">{{#isAnswer}}9844{{/isAnswer}}</td>
             <td>замена удостоверения</td>
         </tr>
-        <tr>
-            <td class="v"></td>
-            <td></td>
-        </tr>
     </table>
+    {{/conditions.4585}}
     Сдаю удостоверение по следующим обстоятельствам (поставить отметку «V»)
+    {{#conditions.4594}}
     <table>
         <tr>
-            <td class="v">*</td>
+            <td class="v">{{#isAnswer}}9867{{/isAnswer}}</td>
             <td>истечения срока действия удостоверения</td>
         </tr>
         <tr>
-            <td class="v">*</td>
+            <td class="v">{{#isAnswer}}9868{{/isAnswer}}</td>
             <td>смерти родителей (единственного родителя) и (или) ребенка (детей)</td>
         </tr>
         <tr>
-            <td class="v">*</td>
+            <td class="v">{{#isAnswer}}9869{{/isAnswer}}</td>
             <td>передачи ребенка на полное государственное обеспечение (если в семье при этом остается менее трех
                 несовершеннолетних детей)
             </td>
         </tr>
         <tr>
-            <td class="v">*</td>
+            <td class="v">{{#isAnswer}}9870{{/isAnswer}}</td>
             <td>лишения родителей родительских прав или ограничения родителей в родительских правах</td>
         </tr>
         <tr>
-            <td class="v">*</td>
+            <td class="v">{{#isAnswer}}9871{{/isAnswer}}</td>
             <td>переезда многодетной семьи, многодетной приемной семьи на постоянное место жительство за пределы
                 территории Ленинградской области
             </td>
         </tr>
     </table>
-
+    {{/conditions.4594}}
 </div>
 
 </body>
