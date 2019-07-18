@@ -14,9 +14,11 @@ public class GenerationPdfRunner {
     private final String outputPdf;
 
     public void run() {
+        System.out.println("Start generation");
         InputDto input = new InputDeserializer().deserialize(inputXml);
         HtmlContext context = new HtmlContext(input.getApplicant(), input.getCheckConditions().mapAnswerToQuestion());
         ByteArrayOutputStream html = new HtmlCreator().generateHtml(context);
         new PdfCreator().generatePdfFromHtml(html, outputPdf);
+        System.out.println("Generation was finished successfully");
     }
 }
