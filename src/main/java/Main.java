@@ -1,20 +1,11 @@
-import deserializer.InputDeserializer;
-import dto.InputDto;
-
-import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
-import java.util.Map;
+import service.GenerationPdfRunner;
 
 public class Main {
 
     public static void main(String[] args) {
-        InputDto input = new InputDeserializer().deserialize("input.xml");
+        String inputXml = args[0];
+        String outputPdf = args.length >= 2 ? args[1] : "default.pdf";
 
-        Map<String, Object> scopes = new HashMap<>();
-        scopes.put("applicant", input.getApplicant());
-        scopes.put("conditions", input.getCheckConditions().mapAnswerToQuestion());
-
-        ByteArrayOutputStream stream = new HtmlCreator().generateHtml(scopes);
-        new PdfCreator().generatePdf(stream);
+        new GenerationPdfRunner(inputXml, outputPdf).run();
     }
 }
