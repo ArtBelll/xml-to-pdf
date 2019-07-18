@@ -3,7 +3,10 @@ import com.openhtmltopdf.outputdevice.helper.BaseRendererBuilder;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import lombok.SneakyThrows;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 public class PdfCreator {
@@ -24,13 +27,7 @@ public class PdfCreator {
     }
 
     private FSSupplier<InputStream> getFontSupplier(String fontPath) {
-        return () -> {
-            try {
-                return new FileInputStream(fontPath);
-            } catch (IOException e) {
-                throw new UncheckedIOException(e);
-            }
-        };
+        return () -> this.getClass().getResourceAsStream(fontPath);
     }
 
 }
